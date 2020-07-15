@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:project="clr-namespace:MVVMDemo.Models"
+             mc:Ignorable="d"
+             x:Class="MVVMDemo.MainPage"
+             Visual="Material">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <project:Person x:Key="persona2" 
+                            Nombre="Anais"
+                            Apellido="Santiago"
+                            Telefono="626457852"
+                            Email="anais@test.com"
+                            Direccion="GranVia 2"
+                            Genre="Female"></project:Person>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout>
+            <Frame>
+                <StackLayout>
+                    <Label Text="Controles enlazado desde C#"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Red"
+                           FontSize="Large"></Label>
+                    <Entry Placeholder="Nombre"
+                           x:Name="nombreEntry"
+                           HorizontalOptions="FillAndExpand"></Entry>
+                    <Entry Placeholder="Apellido"
+                           x:Name="apellidoEntry"
+                           HorizontalOptions="FillAndExpand"></Entry>
+                    <Entry Placeholder="Teléfono"
+                           x:Name="telefonoEntry"
+                           HorizontalOptions="FillAndExpand"></Entry>
+                    <Entry Placeholder="E-mail"
+                           x:Name="emailEntry"
+                           HorizontalOptions="FillAndExpand"></Entry>
+                    <Entry Placeholder="Direccion"
+                           x:Name="direccionEntry"
+                           HorizontalOptions="FillAndExpand"></Entry>
+                    <Entry Placeholder="Tu género"
+                           x:Name="generoEntry"
+                           HorizontalOptions="FillAndExpand"></Entry>
+                    <Button Text="Save Contact"
+                            Clicked="Button_Clicked"></Button>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout>
+                    <Label Text="Controles enlazados desde XAML"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Red"
+                           FontSize="Large"></Label>
+                    <Entry Placeholder="Nombre"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding Nombre, Source={StaticResource persona2}}"></Entry>
+                    <Entry Placeholder="Apellido"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding Apellido, Source={StaticResource persona2}}"></Entry>
+                    <Entry Placeholder="Teléfono2"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding Telefono, Source={StaticResource persona2}}"></Entry>
+                    <Entry Placeholder="E-mail"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding Email, Source={StaticResource persona2}}"></Entry>
+                    <Entry Placeholder="Direccion"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding Direccion, Source={StaticResource persona2}}"></Entry>
+                    <Entry Placeholder="Tu género"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding Genre, Source={StaticResource persona2}}"></Entry>
+                    <Button Text="Save Contact"
+                            Clicked="Button_Clicked"></Button>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout>
+                    <Label Text="Controles enlazados con BindingContext"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Red"
+                           FontSize="Large"></Label>
+                    <Entry Placeholder="Nombre"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding CurrentPerson.Nombre}"></Entry>
+                    <Entry Placeholder="Apellido"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding CurrentPerson.Apellido}"></Entry>
+                    <Entry Placeholder="Teléfono2"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding CurrentPerson.Telefono}"></Entry>
+                    <Entry Placeholder="E-mail"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding CurrentPerson.Email}"></Entry>
+                    <Entry Placeholder="Direccion"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding CurrentPerson.Direccion}"></Entry>
+                    <Entry Placeholder="Tu género"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding CurrentPerson.Genre}"></Entry>
+                    <Button Text="Save Contact"
+                            Clicked="Button_Clicked"></Button>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout>
+                    <Label Text="Enlazando diferentes controles"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Red"
+                           FontSize="Large"
+                           HeightRequest="200"></Label>
+                    <!--<Label Text="Prueba cambio Rotation"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Rotation="{Binding Source={x:Reference slider}, Path=Value}"
+                           HeightRequest="200"></Label>-->
+                    <Slider x:Name="slider" Minimum="0" Maximum="360"></Slider>
+                    <Label Text="{Binding Source={x:Reference slider}, Path=Value}"
+                           Rotation="{Binding Source={x:Reference slider}, Path=Value}"></Label>
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout>
+                    <Label Text="Diferentes modos de Binding"
+                           HorizontalOptions="CenterAndExpand"
+                           TextColor="Red"
+                           FontSize="Large"></Label>
+                    <Entry Placeholder="Source"
+                           x:Name="source"
+                           Text="Inicial"></Entry>
+                    <Entry Placeholder="Target"
+                           Text="{Binding Source={x:Reference source}, 
+                                          Path=Text, Mode=OneWayToSource}"></Entry>
+                </StackLayout>  
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

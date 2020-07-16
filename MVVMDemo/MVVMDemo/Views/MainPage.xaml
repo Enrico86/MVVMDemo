@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:project="clr-namespace:MVVMDemo.Models"
+             xmlns:converters="clr-namespace:MVVMDemo.ValueConverter"
              mc:Ignorable="d"
              x:Class="MVVMDemo.MainPage"
              Visual="Material">
@@ -16,6 +17,25 @@
                             Email="anais@test.com"
                             Direccion="GranVia 2"
                             Genre="Female"></project:Person>
+            <Style TargetType="Entry"
+                   x:Key="GenreEntry">
+                <Style.Triggers>
+                        <Trigger TargetType="Entry"
+                                 Property="Text"
+                                 Value="Male">
+                            <Setter Property="TextColor"
+                                    Value="Blue"></Setter>
+                        </Trigger>
+                        <Trigger TargetType="Entry"
+                                 Property="Text"
+                                 Value="Female">
+                            <Setter Property="TextColor"
+                                    Value="DeepPink"></Setter>
+                        </Trigger>
+                </Style.Triggers>
+            </Style>
+            <converters:PhoneValidatorConverter x:Key="phoneValidator"></converters:PhoneValidatorConverter>
+            <converters:MoneyConverter x:Key="moneyConverter"></converters:MoneyConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -44,6 +64,7 @@
                            HorizontalOptions="FillAndExpand"></Entry>
                     <Entry Placeholder="Tu género"
                            x:Name="generoEntry"
+                           Style="{StaticResource GenreEntry}"
                            HorizontalOptions="FillAndExpand"></Entry>
                     <Button Text="Save Contact"
                             Clicked="Button_Clicked"></Button>
@@ -61,9 +82,11 @@
                     <Entry Placeholder="Apellido"
                            HorizontalOptions="FillAndExpand"
                            Text="{Binding Apellido, Source={StaticResource persona2}}"></Entry>
-                    <Entry Placeholder="Teléfono2"
+                    <Entry Placeholder="Teléfono"
                            HorizontalOptions="FillAndExpand"
-                           Text="{Binding Telefono, Source={StaticResource persona2}}"></Entry>
+                           Text="{Binding Telefono, Source={StaticResource persona2}}"
+                           TextColor="{Binding Telefono, Source={StaticResource persona2},
+                                             Converter={StaticResource phoneValidator}}"></Entry>
                     <Entry Placeholder="E-mail"
                            HorizontalOptions="FillAndExpand"
                            Text="{Binding Email, Source={StaticResource persona2}}"></Entry>
@@ -72,7 +95,8 @@
                            Text="{Binding Direccion, Source={StaticResource persona2}}"></Entry>
                     <Entry Placeholder="Tu género"
                            HorizontalOptions="FillAndExpand"
-                           Text="{Binding Genre, Source={StaticResource persona2}}"></Entry>
+                           Text="{Binding Genre, Source={StaticResource persona2}}"
+                           Style="{StaticResource GenreEntry}"></Entry>
                     <Button Text="Save Contact"
                             Clicked="Button_Clicked"></Button>
                 </StackLayout>
@@ -89,9 +113,11 @@
                     <Entry Placeholder="Apellido"
                            HorizontalOptions="FillAndExpand"
                            Text="{Binding CurrentPerson.Apellido}"></Entry>
-                    <Entry Placeholder="Teléfono2"
+                    <Entry Placeholder="Teléfono"
                            HorizontalOptions="FillAndExpand"
-                           Text="{Binding CurrentPerson.Telefono}"></Entry>
+                           Text="{Binding CurrentPerson.Telefono}"
+                           TextColor="{Binding CurrentPerson.Telefono,
+                                             Converter={StaticResource phoneValidator}}"></Entry>
                     <Entry Placeholder="E-mail"
                            HorizontalOptions="FillAndExpand"
                            Text="{Binding CurrentPerson.Email}"></Entry>
@@ -100,7 +126,12 @@
                            Text="{Binding CurrentPerson.Direccion}"></Entry>
                     <Entry Placeholder="Tu género"
                            HorizontalOptions="FillAndExpand"
-                           Text="{Binding CurrentPerson.Genre}"></Entry>
+                           Text="{Binding CurrentPerson.Genre}"
+                           Style="{StaticResource GenreEntry}">
+                    </Entry>
+                    <Entry Placeholder="Salario"
+                           HorizontalOptions="FillAndExpand"
+                           Text="{Binding CurrentPerson.Salary, Converter={StaticResource moneyConverter}}"></Entry>
                     <Button Text="Save Contact"
                             Clicked="Button_Clicked"></Button>
                 </StackLayout>

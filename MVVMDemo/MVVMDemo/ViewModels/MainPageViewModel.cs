@@ -35,7 +35,8 @@ namespace MVVMDemo.ViewModels
                 Telefono = "624988874",
                 Email = "test.enri@prueba.com",
                 Direccion = "GranVia de les Corts Catalanes 752, 4-5",
-                Genre = Genre.Male
+                Genre = Genre.Male,
+                Salary=2955.57m
             };
 
             CurrentPerson2 = new Person()
@@ -45,7 +46,7 @@ namespace MVVMDemo.ViewModels
                 Telefono = "614589587",
                 Email = "test.angelo@prueba.com",
                 Direccion = "Torino",
-                Genre = Genre.Male
+                Genre = Genre.Male,
             };
         }
     }

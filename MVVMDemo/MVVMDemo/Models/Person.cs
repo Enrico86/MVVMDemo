@@ -14,6 +14,8 @@ namespace MVVMDemo.Models
         private string telefono;
         private string email;
         private string direccion;
+        private Genre genre;
+        private decimal salary;
 
         public string Nombre
         {
@@ -56,7 +58,7 @@ namespace MVVMDemo.Models
             }
         }
 
-        private Genre genre;
+
 
         public Genre Genre
         {
@@ -67,6 +69,15 @@ namespace MVVMDemo.Models
                 OnPropertyChanged();
             }
         }
+
+
+
+        public decimal Salary
+        {
+            get { return salary; }
+            set { salary = value; }
+        }
+
 
     }
 }

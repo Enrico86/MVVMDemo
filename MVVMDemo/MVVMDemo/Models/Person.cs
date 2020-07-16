@@ -78,6 +78,15 @@ namespace MVVMDemo.Models
             set { salary = value; }
         }
 
+        private string gender;
+
+        public string Gender
+        {
+            get { return gender; }
+            set { gender = value; }
+        }
+
+
 
     }
 }

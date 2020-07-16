@@ -16,13 +16,10 @@ namespace MVVMDemo
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        MainPageViewModel vm = new MainPageViewModel();
-
         public MainPage()
         {
             InitializeComponent();
-            vm.LoadData();  
-            BindingContext = vm;
+
 
             //Binding binding = new Binding();
             ////Primero instanciamos un objeto de la clase Binding, que será el enlace de la primera propiedad de CurrentPerson
@@ -67,17 +64,24 @@ namespace MVVMDemo
             //direccionEntry.SetBinding(Entry.TextProperty, binding5);
 
         }
-
-        private async void Button_Clicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            //    CurrentPerson.Nombre = "Juan";
-            //    CurrentPerson.Telefono = "000000000";
-            //    CurrentPerson.Email = "ejemplo@ejemplo.com";
-            //    CurrentPerson.Apellido = "La Prueba";
-            //    CurrentPerson.Direccion = "Gran Via de la Prueba 999";
-
-            //    CurrentPerson2.Nombre = "EjemploPropertyChanged";
-
+            MainPageViewModel vm = new MainPageViewModel(Navigation);
+            base.OnAppearing();
+            vm.LoadData();
+            BindingContext = vm;
         }
+
+        //private async void Button_Clicked(object sender, EventArgs e)
+        //{
+        //    //    CurrentPerson.Nombre = "Juan";
+        //    //    CurrentPerson.Telefono = "000000000";
+        //    //    CurrentPerson.Email = "ejemplo@ejemplo.com";
+        //    //    CurrentPerson.Apellido = "La Prueba";
+        //    //    CurrentPerson.Direccion = "Gran Via de la Prueba 999";
+
+        //    //    CurrentPerson2.Nombre = "EjemploPropertyChanged";
+
+        //}
     }
 }

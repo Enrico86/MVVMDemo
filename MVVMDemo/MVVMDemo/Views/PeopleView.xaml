@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MVVMDemo.Views.PeopleView"
+             Title="PeopleView Page">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ListView ItemsSource="{Binding People}"
+                  HasUnevenRows="True"
+                  SeparatorColor="Black"
+                  SelectedItem="{Binding SelectedPerson, Mode=TwoWay}">
+            <!--<ListView.Header>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="Lista de personas reales"
+                               FontSize="Large"></Label>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.Header>-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Nombre, StringFormat='Nombre: {0}'}"></Label>
+                            <Label Text="{Binding Apellido, StringFormat='Apellido: {0}'}"></Label>
+                            <Label Text="{Binding Telefono, StringFormat='Telefono: {0}'}"></Label>
+                            <Label Text="{Binding Email, StringFormat='Email: {0}'}"></Label>
+                            <Label Text="{Binding Direccion, StringFormat='Direccion: {0}'}"></Label>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

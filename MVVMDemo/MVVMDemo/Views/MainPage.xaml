@@ -7,7 +7,8 @@
              xmlns:converters="clr-namespace:MVVMDemo.ValueConverter"
              mc:Ignorable="d"
              x:Class="MVVMDemo.MainPage"
-             Visual="Material">
+             Visual="Material"
+             Title="Main Page">
     <ContentPage.Resources>
         <ResourceDictionary>
             <project:Person x:Key="persona2" 
@@ -67,7 +68,7 @@
                            Style="{StaticResource GenreEntry}"
                            HorizontalOptions="FillAndExpand"></Entry>
                     <Button Text="Save Contact"
-                            Clicked="Button_Clicked"></Button>
+                            Command="{Binding SaveContactCommand}"></Button>
                 </StackLayout>
             </Frame>
             <Frame>
@@ -98,7 +99,7 @@
                            Text="{Binding Genre, Source={StaticResource persona2}}"
                            Style="{StaticResource GenreEntry}"></Entry>
                     <Button Text="Save Contact"
-                            Clicked="Button_Clicked"></Button>
+                            Command="{Binding SaveContactCommand}"></Button>
                 </StackLayout>
             </Frame>
             <Frame>
@@ -133,7 +134,7 @@
                            HorizontalOptions="FillAndExpand"
                            Text="{Binding CurrentPerson.Salary, Converter={StaticResource moneyConverter}}"></Entry>
                     <Button Text="Save Contact"
-                            Clicked="Button_Clicked"></Button>
+                            Command="{Binding SaveContactCommand}"></Button>
                 </StackLayout>
             </Frame>
             <Frame>
@@ -166,6 +167,14 @@
                            Text="{Binding Source={x:Reference source}, 
                                           Path=Text, Mode=OneWayToSource}"></Entry>
                 </StackLayout>  
+            </Frame>
+            <Frame>
+                <Button Text="PeopleView Page"
+                        HeightRequest="150"
+                        CornerRadius="10"
+                        FontSize="Large"
+                        HorizontalOptions="Center"
+                        Command="{Binding GoToPeopleViewCommand}"></Button>
             </Frame>
         </StackLayout>
     </ScrollView>
